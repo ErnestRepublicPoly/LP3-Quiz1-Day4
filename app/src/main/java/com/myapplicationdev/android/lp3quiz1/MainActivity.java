@@ -72,9 +72,14 @@ public class MainActivity extends AppCompatActivity {
         btnPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 NotificationCompat.Builder builder = new
                         NotificationCompat.Builder(MainActivity.this, "default");
+
+                NotificationCompat.BigPictureStyle bigPic = new NotificationCompat.BigPictureStyle();
+                bigPic.bigPicture(BitmapFactory.decodeResource(getResources(),R.drawable.koala));
+                bigPic.setBigContentTitle("This is Big Picture");
+                bigPic.setSummaryText("Koala!");
+
                 builder.setContentTitle("LP3 Quiz1");
                 builder.setContentText("Expand to see picture");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
@@ -98,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 al.add("This is the third line");
 
                 NotificationCompat.InboxStyle inboxS = new NotificationCompat.InboxStyle();
-                for (String tmp : al){ //iterate the entire ArrayList object and extract each element into variable tmp
-                    inboxS.addLine(tmp);  //do something to the tmp, which is to retrive the value and place into Notification Inbox Style
+                for (String tmp : al){
+                    inboxS.addLine(tmp);
                 };
                 inboxS.setBigContentTitle("Inbox style");
                 inboxS.setSummaryText("List of entries");
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setContentText("Expand to see content");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
+                builder.setStyle(inboxS);
                 builder.setAutoCancel(true);
 
                 Notification n = builder.build();
